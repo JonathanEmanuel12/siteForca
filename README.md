@@ -12,6 +12,6 @@ aplicativo em que o usuário tenta acertar uma palavra
 #### Frontend
 * HTML5
 * CSS
-* Javascrip
+* Javascript
 
 *LinkedIn: https://www.linkedin.com/in/jonathan-tolentino-134a04170*
