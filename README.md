@@ -1,15 +1,15 @@
 # siteForca
 aplicativo em que o usuário tenta acertar uma palavra
 
-###Ambiente
+### Ambiente
 
-####Backend
+#### Backend
 **Node.js**
 **Express**
 **Sequelize**
 **MySQL**
 
-####Frontend
+#### Frontend
 **HTML5**
 **CSS**
 **Javascript**
