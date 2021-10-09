@@ -14,4 +14,4 @@ aplicativo em que o usuário tenta acertar uma palavra
 * CSS
 * Javascrip
 
-
+*LinkedIn: https://www.linkedin.com/in/jonathan-tolentino-134a04170*
