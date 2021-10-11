@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var centroRouter = require('./routes/centro');
 
 
 
@@ -23,14 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/centro', centroRouter);
 
-// catch 404 and forward to error handler
+// se nenhuma rota for chamada é lançado um erro 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// tra
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
