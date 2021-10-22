@@ -1,32 +1,60 @@
+
+
 const canvas = document.getElementById("canvas");
+var ctx;
 
-if(canvas.getContext) {
-    var ctx =  canvas.getContext('2d');
+try {
+    ctx =  canvas.getContext('2d');   
+}
+catch(error) {
+    alert("Ocorreu um erro com o canvas");
+    console.log(error.message)
+}
 
+criarForca();
+ criarCabeca();
+ criarCorpo();
+ criarBracoEsq();
+// criarBracoDir();
+// criarPernaEsq();
+// criarPernaDir();
+
+function criarForca() {
+    ctx.fillRect(40, 23, 4, 95);
+    ctx.fillRect(40, 23, 60, 4);
+    ctx.fillRect(98, 23, 4, 15);
+}
+
+function criarCabeca() {
     ctx.beginPath();
-    ctx.arc(50, 30, 20, 0, Math.PI * 2, true);
+    ctx.arc(100, 48, 10, 0, Math.PI * 2, true);
     ctx.lineWidth = 2;
     ctx.stroke();
-
-    ctx.fillRect(48, 50, 4, 80);
-
+}
+function criarCorpo() {
+    ctx.fillRect(99, 58, 2, 35);
+}
+function criarBracoEsq() {
     ctx.beginPath();
-    ctx.moveTo(48, 65);
-    ctx.lineTo(18, 80);
+    ctx.moveTo(99, 68);
+    ctx.lineTo(82, 83);
     ctx.stroke();
-
+}
+function criarBracoDir() {
     ctx.beginPath();
-    ctx.moveTo(52, 65);
-    ctx.lineTo(82, 80);
+    ctx.moveTo(101, 68);
+    ctx.lineTo(118, 83);
     ctx.stroke();
-
+}
+function criarPernaEsq() {
     ctx.beginPath();
-    ctx.moveTo(48, 129);
-    ctx.lineTo(18, 150);    
+    ctx.moveTo(100, 93);
+    ctx.lineTo(83, 111);    
     ctx.stroke();
-
+}
+function criarPernaDir() {
     ctx.beginPath();
-    ctx.moveTo(52, 129);
-    ctx.lineTo(82, 150);    
+    ctx.moveTo(100, 93);
+    ctx.lineTo(117, 111);    
     ctx.stroke();
 }

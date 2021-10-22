@@ -8,13 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="quadroMenu">
-        <input id="btnDica" type="button" value="Dica: 3">
-        <input id="btnNovaPalavra" type="button" value="Nova Palavra">
-          
+    <div id="quadroPrincipal">
+        <div id="quadroMenu">
+            <input id="btnDica" class="btn" type="button" value="Dica: 3">
+            <input id="btnNovaPalavra" class="btn" type="button" value="Nova Palavra">
+            <button id="btnVoltar" class="btn">Voltar</button>
+        </div>
+        <div id="quadroJogo">
+            <div id="quadroForca">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div>
+                
+            </div>
+        </div>
     </div>
-    <canvas id="canvas"></canvas>
-
     <script type="text/javascript" src="/javascripts/centro.js"></script>
 </body>
 </html>

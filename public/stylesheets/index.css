@@ -66,6 +66,7 @@ a {
 .efeitos:active {
   background-color: #000;
   color: #fff;
+  border-color: rgb(97, 96, 96);
 }
 
 .btn_dif {

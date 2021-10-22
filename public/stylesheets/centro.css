@@ -4,7 +4,48 @@
     box-sizing: border-box;
 }
 
+body {
+    padding-left: 10px;
+}
+
+#quadroPrincipal {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    
+}
+
+#quadroMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 200px;
+}
+
+.btn {
+    border: 3px solid #000;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    background-color: rgb(241, 241, 241);
+    width: 180px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+}
+
+.btn:hover {
+    background-color: rgb(97, 96, 96); 
+    color: #fff;
+  }
+.btn:active {
+    background-color: #000;
+    color: #fff;
+    border-color: rgb(97, 96, 96);
+  }
+
 #canvas {
-    width: 400px;
+    width: 550px;
     height: auto;
 }
