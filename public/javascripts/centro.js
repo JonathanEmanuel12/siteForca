@@ -12,12 +12,12 @@ catch(error) {
 }
 
 criarForca();
- criarCabeca();
- criarCorpo();
- criarBracoEsq();
-// criarBracoDir();
-// criarPernaEsq();
-// criarPernaDir();
+criarCabeca();
+criarCorpo();
+criarBracoEsq();
+criarBracoDir();
+criarPernaEsq();
+criarPernaDir();
 
 function criarForca() {
     ctx.fillRect(40, 23, 4, 95);

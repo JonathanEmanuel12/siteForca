@@ -23,6 +23,53 @@ body {
     height: 200px;
 }
 
+#quadroJogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#quadroForca {
+    margin-right: -200px;
+}
+
+#quadroPalavra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-right: 10px;
+}
+
+.letra_da_palavra {
+    font-size: 30px;
+    border-bottom: 2px solid #000;
+    font-family: 'Fira Sans', sans-serif;
+    text-align: center;
+    padding: 5px;
+    margin-right: 5px;
+    width: 50px; 
+
+}
+
+@media (max-width: 750px) { 
+    .letra_da_palavra {        
+        width: 40px;
+        height: 40px;
+    }
+    #quadroPalavra {
+        flex-direction: column;
+    }
+    
+}
+
+@media (max-width: 420px) {
+    #quadroForca {
+        margin-right: -70%;   
+    }
+}
+
+
+
 .btn {
     border: 3px solid #000;
     text-align: center;
