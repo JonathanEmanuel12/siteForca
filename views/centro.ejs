@@ -15,20 +15,19 @@
         <div id="quadroMenu">
             <input id="btnDica" class="btn" type="button" value="Dica: 3">
             <input id="btnNovaPalavra" class="btn" type="button" value="Nova Palavra">
-            <button id="btnVoltar" class="btn">Voltar</button>
+            <form method="get" action="/">
+                <button id="btnVoltar" class="btn">Voltar</button>
+            </form>
+            
+            <input id="valueDif" type="hidden" value=<%= value %>> 
         </div>
         <div id="quadroJogo">
             <div id="quadroForca">
                 <canvas id="canvas"></canvas>
             </div>
             <div id="quadroPalavra">
-                <div class="letra_da_palavra">P</div>
-                <div class="letra_da_palavra">A</div>
-                <div class="letra_da_palavra">L</div>
-                <div class="letra_da_palavra">A</div>
-                <div class="letra_da_palavra">V</div>
-                <div class="letra_da_palavra">R</div>
-                <div class="letra_da_palavra">A</div>
+                <input id="valuePalavra" type="hidden">
+                
             </div>
         </div>
     </div>

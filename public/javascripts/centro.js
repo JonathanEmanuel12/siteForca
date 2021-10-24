@@ -2,15 +2,19 @@
 
 const canvas = document.getElementById("canvas");
 var ctx;
+var qtdVitorias;
 
 try {
     ctx =  canvas.getContext('2d');   
 }
 catch(error) {
     alert("Ocorreu um erro com o canvas");
-    console.log(error.message)
+    console.log(error.message);
 }
 
+document.getElementById("btnNovaPalavra").addEventListener("click", novaPalavra);
+
+requerirPalavra();
 criarForca();
 criarCabeca();
 criarCorpo();
@@ -18,6 +22,63 @@ criarBracoEsq();
 criarBracoDir();
 criarPernaEsq();
 criarPernaDir();
+
+function requerirPalavra() {
+    const dificuldade = document.getElementById("valueDif");
+
+    let xhr = new XMLHttpRequest();
+
+
+
+    xhr.open('GET', '/centro/palavra/' + dificuldade.value);
+
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState == 4) {
+            if(xhr.status == 200) {
+                console.log(xhr.responseText);
+                document.getElementById("valuePalavra").value = JSON.parse(xhr.responseText).palavra;
+                prepararJogo(JSON.parse(xhr.responseText));
+            }
+        }
+    };
+
+    xhr.send();
+}
+
+function prepararJogo(resposta) {
+    const quadroPalavra = document.getElementById("quadroPalavra");
+    const valuePalavra = quadroPalavra.children[0];
+    quadroPalavra.innerHTML = "";
+    quadroPalavra.appendChild(valuePalavra); 
+
+    for (let i = 0; i < resposta.palavra.length; i++) {
+        let letraPalavra = document.createElement("div");
+        letraPalavra.className = "letra_da_palavra";
+        console.log(letraPalavra.classList);
+        letraPalavra.innerHTML = resposta.palavra[i];
+        quadroPalavra.appendChild(letraPalavra);
+    }
+}
+
+function novaPalavra() {
+    let valueDif = document.getElementById("valueDif");
+
+    valueDif.value = (parseInt(valueDif.value) < 3) ? parseInt(valueDif.value)+1 : parseInt(valueDif.value);
+    requerirPalavra();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function criarForca() {
     ctx.fillRect(40, 23, 4, 95);
