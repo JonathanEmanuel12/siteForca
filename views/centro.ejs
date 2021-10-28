@@ -13,13 +13,18 @@
 <body>
     <div id="quadroPrincipal">
         <div id="quadroMenu">
-            <input id="btnDica" class="btn" type="button" value="Dica: 3">
-            <input id="btnNovaPalavra" class="btn" type="button" value="Nova Palavra">
-            <form method="get" action="/">
-                <button id="btnVoltar" class="btn">Voltar</button>
-            </form>
-            
-            <input id="valueDif" type="hidden" value=<%= value %>> 
+            <div class="div">
+                <input id="btnDica" class="btn" type="button" value="Dica: 3">
+                <input id="btnNovaPalavra" class="btn" type="button" value="Nova Palavra">
+                <form method="get" action="/">
+                    <button id="btnVoltar" class="btn">Voltar</button>
+                </form>
+                <input id="valueDif" type="hidden" value=<%= value %>>
+            </div>
+            <div class="div">
+                <input id="textChute" type="text" maxlength="1">
+                <button id="btnChute" class="btnPequeno" type="button">Enviar</button>
+            </div> 
         </div>
         <div id="quadroJogo">
             <div id="quadroForca">
@@ -27,7 +32,6 @@
             </div>
             <div id="quadroPalavra">
                 <input id="valuePalavra" type="hidden">
-                
             </div>
         </div>
     </div>

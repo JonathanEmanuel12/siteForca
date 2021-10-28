@@ -1,11 +1,19 @@
+const PalavrasModel = require('../model/palavrasModel');
+
 
 const PalavrasControle = {
-    getPalavra: (dificuldade) => {
-        if(dificuldade == 1){ return {palavra: "Carro"}; }
-        if(dificuldade == 2){ return {palavra: "Cigarra"}; }
-        if(dificuldade == 3){ return {palavra: "Voltímetro"}; }
+    getPalavra: async (dificuldade) => {
+        const palavras = await PalavrasModel.findAll({ where: { dificuldade: dificuldade }});
+        
+        return palavras[pegarAleatorio(palavras.length)];
     }
 
 }
 
+function pegarAleatorio(max) {
+    const nMin = Math.ceil(0);
+    const nMax = Math.floor(max);
+
+    return Math.floor(Math.random() * (nMax-nMin)) + nMin;
+}
 module.exports = PalavrasControle;

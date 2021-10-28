@@ -13,15 +13,11 @@ catch(error) {
 }
 
 document.getElementById("btnNovaPalavra").addEventListener("click", novaPalavra);
+document.getElementById("btnChute").addEventListener("click", verificarChuteLetra);
 
 requerirPalavra();
 criarForca();
-criarCabeca();
-criarCorpo();
-criarBracoEsq();
-criarBracoDir();
-criarPernaEsq();
-criarPernaDir();
+
 
 function requerirPalavra() {
     const dificuldade = document.getElementById("valueDif");
@@ -55,7 +51,6 @@ function prepararJogo(resposta) {
         let letraPalavra = document.createElement("div");
         letraPalavra.className = "letra_da_palavra";
         console.log(letraPalavra.classList);
-        letraPalavra.innerHTML = resposta.palavra[i];
         quadroPalavra.appendChild(letraPalavra);
     }
 }
@@ -65,6 +60,25 @@ function novaPalavra() {
 
     valueDif.value = (parseInt(valueDif.value) < 3) ? parseInt(valueDif.value)+1 : parseInt(valueDif.value);
     requerirPalavra();
+}
+
+function verificarChuteLetra() {
+    const textChute = document.getElementById("textChute");
+    const valuePalavra = document.getElementById("valuePalavra");
+
+    if(valuePalavra.value.toLowerCase().includes(textChute.value.toLowerCase())) {
+        
+        for (let i = 0; i < valuePalavra.value.length; i++) {
+            if(valuePalavra.value[i].toLowerCase() == textChute.value.toLowerCase()) {
+                document.getElementById("quadroPalavra").children[i+1].innerHTML = textChute.value;
+            }
+        }
+        
+    }
+    else {
+        criarCabeca();
+    }
+
 }
 
 

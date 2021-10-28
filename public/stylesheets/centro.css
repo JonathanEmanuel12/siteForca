@@ -4,29 +4,35 @@
     box-sizing: border-box;
 }
 
+.div {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around;
+    
+}
+
 body {
-    padding-left: 10px;
+    margin-right: 80px;
 }
 
 #quadroPrincipal {
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
-    
 }
 
 #quadroMenu {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 200px;
-    height: 200px;
+    flex-direction: row;
+    justify-content: space-between;
+    
 }
 
 #quadroJogo {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 #quadroForca {
@@ -48,10 +54,12 @@ body {
     padding: 5px;
     margin-right: 5px;
     width: 50px; 
-
 }
 
-@media (max-width: 750px) { 
+@media (max-width: 880px) {
+    body {
+        margin-right: 40px;
+    }
     .letra_da_palavra {        
         width: 40px;
         height: 40px;
@@ -63,23 +71,35 @@ body {
 }
 
 @media (max-width: 420px) {
+    body {
+        margin-right: 8px;
+    }
     #quadroForca {
         margin-right: -70%;   
     }
 }
 
-
-
 .btn {
     border: 3px solid #000;
     text-align: center;
-    text-decoration: none;
-    color: #000;
     background-color: rgb(241, 241, 241);
     width: 180px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 22px;
+    margin: 2px;
+    margin-left: 8px;
+}
+
+#btnChute {
+    border: 3px solid #000;
+    text-align: center;
+    background-color: rgb(241, 241, 241);
+    width: 120px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    
 }
 
 .btn:hover {
@@ -90,7 +110,27 @@ body {
     background-color: #000;
     color: #fff;
     border-color: rgb(97, 96, 96);
+}
+
+#btnChute:hover {
+    background-color: rgb(97, 96, 96); 
+    color: #fff;
   }
+#btnChute:active {
+    background-color: #000;
+    color: #fff;
+    border-color: rgb(97, 96, 96);
+}
+
+#textChute {
+    padding: 5px;
+    width: 120px;
+    height: 60px;
+    text-align: center;
+    font-size: 22px;
+    background-color: rgb(241, 241, 241);
+    border: 2px solid #000;
+}
 
 #canvas {
     width: 550px;

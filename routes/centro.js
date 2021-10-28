@@ -13,9 +13,9 @@ router.get('/:nivel', function(req, res, next) {
 router.get('/dica', (req, res) => {
   res.json({aviso: "ainda não tem"});
 });
-router.get('/palavra/:nivel', (req, res) => {
-  console.log(palavraControle);
-  res.json(palavraControle.getPalavra(req.params.nivel));
+router.get('/palavra/:nivel', async(req, res) => {
+  const palavra = await palavraControle.getPalavra(req.params.nivel);
+  res.json(palavra);
 });
 
 
