@@ -4,16 +4,23 @@ const canvas = document.getElementById("canvas");
 var ctx;
 var qtdVitorias;
 
-try {
-    ctx =  canvas.getContext('2d');   
-}
-catch(error) {
-    alert("Ocorreu um erro com o canvas");
-    console.log(error.message);
-}
+const controle = {
+    palavrasArmazenadas: [],
+    pontuacao: 0,
+    erros: 0,
+    atualizarPalavrasArmazenadas: (palavras) => {
+        controle.palavrasArmazenadas = Object.values(palavras);
+    }
+    
+};
 
 document.getElementById("btnNovaPalavra").addEventListener("click", novaPalavra);
 document.getElementById("btnChute").addEventListener("click", verificarChuteLetra);
+document.getElementById("textChute").addEventListener("keyup", (e) => {
+    if(isNaN(e.target.value) == false) {
+        e.target.value = ""
+    }
+})
 
 requerirPalavra();
 criarForca();
@@ -32,8 +39,8 @@ function requerirPalavra() {
         if(xhr.readyState == 4) {
             if(xhr.status == 200) {
                 console.log(xhr.responseText);
-                document.getElementById("valuePalavra").value = JSON.parse(xhr.responseText).palavra;
-                prepararJogo(JSON.parse(xhr.responseText));
+                controle.atualizarPalavrasArmazenadas(JSON.parse(xhr.responseText));
+                prepararJogo(controle.palavrasArmazenadas.pop());
             }
         }
     };
@@ -41,7 +48,9 @@ function requerirPalavra() {
     xhr.send();
 }
 
+
 function prepararJogo(resposta) {
+    document.getElementById("valuePalavra").value = resposta.palavra;
     const quadroPalavra = document.getElementById("quadroPalavra");
     const valuePalavra = quadroPalavra.children[0];
     quadroPalavra.innerHTML = "";
@@ -56,10 +65,17 @@ function prepararJogo(resposta) {
 }
 
 function novaPalavra() {
-    let valueDif = document.getElementById("valueDif");
+    try {
+        prepararJogo(controle.palavrasArmazenadas.pop());
+    }
+    catch {
+        if(controle.pontuacao == 3) {
+            let valueDif =  document.getElementById("valueDif");
+            valueDif.value = parseInt(valueDif.value) + 1;
+        }
 
-    valueDif.value = (parseInt(valueDif.value) < 3) ? parseInt(valueDif.value)+1 : parseInt(valueDif.value);
-    requerirPalavra();
+        requerirPalavra();
+    }
 }
 
 function verificarChuteLetra() {
@@ -70,31 +86,86 @@ function verificarChuteLetra() {
         
         for (let i = 0; i < valuePalavra.value.length; i++) {
             if(valuePalavra.value[i].toLowerCase() == textChute.value.toLowerCase()) {
-                document.getElementById("quadroPalavra").children[i+1].innerHTML = textChute.value;
+                if(i == 0) 
+                {
+                    document.getElementById("quadroPalavra").children[i+1].innerHTML = textChute.value.toUpperCase();
+                }
+                else
+                {
+                    document.getElementById("quadroPalavra").children[i+1].innerHTML = textChute.value;
+                }
+                
             }
         }
-        
     }
     else {
-        criarCabeca();
+        controle.erros = controle.erros + 1;
+        let divChutesErrados = document.getElementById("chutesErrados");
+        let divItemChutesErrados = document.createElement("div");
+        divItemChutesErrados.innerHTML = textChute.value;
+        divChutesErrados.appendChild(divItemChutesErrados);
+
+        desenhar(controle.erros);
+    }
+    textChute.value = "";
+    let nDivVazias = Array.from(document.getElementById("quadroPalavra").children).filter(verificarDivVazia).length - 1;
+    
+    if(nDivVazias == 0) {
+        controle.pontuacao = controle.pontuacao + 1;
+        novaPalavra();
     }
 
+}
+
+function verificarDivVazia(value) {
+    return value.innerHTML == "";
+}
+
+function desenhar(nErros) {
+    switch(nErros) {
+        case 1:
+            criarCabeca();
+            break;
+        case 2:
+            criarCorpo();
+            break;
+        case 3:
+            criarBracoEsq();
+            break;
+        case 4:
+            criarBracoDir();
+            break;
+        case 5:
+            criarPernaEsq();
+            break;
+        case 6:
+            criarPernaDir();
+            controle.pontuacao = 0;
+            alert("Opa! Você perdeu");
+            controle.erros = 0;
+            criarForca();
+            document.getElementById("chutesErrados").innerHTML = "";
+            requerirPalavra();
+            break;
+    }
 }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
 function criarForca() {
+
+    try {
+        ctx = canvas.getContext('2d');   
+    }
+    catch(error) {
+        alert("Ocorreu um erro com o canvas");
+        console.log(error.message);
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     ctx.fillRect(40, 23, 4, 95);
     ctx.fillRect(40, 23, 60, 4);
     ctx.fillRect(98, 23, 4, 15);

@@ -2,12 +2,15 @@ const PalavrasModel = require('../model/palavrasModel');
 
 
 const PalavrasControle = {
-    getPalavra: async (dificuldade) => {
+    getPalavras: async (dificuldade) => {
         const palavras = await PalavrasModel.findAll({ where: { dificuldade: dificuldade }});
-        
-        return palavras[pegarAleatorio(palavras.length)];
+        const palavrasSelecionadas = [];
+        for (let i = 0; i < 3; i++) {
+            palavrasSelecionadas[i] = (palavras[pegarAleatorio(palavras.length)]);
+        }
+        return palavrasSelecionadas;
     }
-
+//impedir que vá a mesma palavra
 }
 
 function pegarAleatorio(max) {
